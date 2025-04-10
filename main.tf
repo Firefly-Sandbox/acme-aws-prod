@@ -111,12 +111,12 @@ resource "aws_security_group" "acme-prod-drift" {
   description = "sandbox drifted resources"
   egress {
     cidr_blocks = ["0.0.0.0/0"]
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
+    from_port   = 443
+    protocol    = "tcp"
+    to_port     = 443
   }
   ingress {
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.0.0.0/8"]
     from_port   = 22
     protocol    = "tcp"
     to_port     = 22
@@ -137,12 +137,12 @@ resource "aws_security_group" "acme-prod-ghost" {
   description = "sandbox ghosted resources"
   egress {
     cidr_blocks = ["0.0.0.0/0"]
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
+    from_port   = 443
+    protocol    = "tcp"
+    to_port     = 443
   }
   ingress {
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.0.0.0/8"]
     from_port   = 3389
     protocol    = "tcp"
     to_port     = 3389
@@ -158,4 +158,3 @@ resource "aws_security_group" "acme-prod-ghost" {
     ignore_changes = [revoke_rules_on_delete, timeouts]
   }
 }
-
