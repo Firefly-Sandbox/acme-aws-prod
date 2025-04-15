@@ -159,3 +159,16 @@ resource "aws_security_group" "acme-prod-ghost" {
   }
 }
 
+
+resource "aws_dynamodb_table" "app-state" {
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+  hash_key       = "LockID"
+  name           = "app-state"
+  read_capacity  = 1
+  stream_enabled = false
+  write_capacity = 1
+}
+
